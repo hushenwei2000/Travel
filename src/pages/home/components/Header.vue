@@ -3,7 +3,6 @@
       <div class="header-left">&lt;</div>
       <div class="header-mid">
           <div class="header-mid-text">奶爸旅游季 游乐园走起</div>
-          
       </div>
       <div class="header-right">
           北京
