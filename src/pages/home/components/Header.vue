@@ -5,7 +5,7 @@
           <div class="header-mid-text">奶爸旅游季 游乐园走起</div>
       </div>
       <div class="header-right">
-          北京
+          {{city}}
         <div class="header-right-arrow"></div>
         </div>
   </div>
@@ -13,7 +13,10 @@
 
 <script>
 export default {
-    name: 'HomeHeader'
+    name: 'HomeHeader',
+    props: {
+        city: String
+    }
 }
 </script>
 

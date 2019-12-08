@@ -1,42 +1,10 @@
 <template>
   <div class="icons">
         <swiper :options="swiperOption">
-          <swiper-slide>
-                <div class="icon">
-                  <img src="https://s.qunarzz.com/homenode/images/touchheader/piao.png" alt="" class="icon-img">
-                  <p class="desc">火车票</p>
-                </div>
-                <div class="icon">
-                  <img src="https://s.qunarzz.com/homenode/images/touchheader/piao.png" alt="" class="icon-img">
-                  <p class="desc">火车票</p>
-                </div><div class="icon">
-                  <img src="https://s.qunarzz.com/homenode/images/touchheader/piao.png" alt="" class="icon-img">
-                  <p class="desc">火车票</p>
-                </div><div class="icon">
-                  <img src="https://s.qunarzz.com/homenode/images/touchheader/piao.png" alt="" class="icon-img">
-                  <p class="desc">火车票</p>
-                </div>
-                <div class="icon">
-                  <img src="https://s.qunarzz.com/homenode/images/touchheader/piao.png" alt="" class="icon-img">
-                  <p class="desc">火车票</p>
-                </div>
-                <div class="icon">
-                  <img src="https://s.qunarzz.com/homenode/images/touchheader/piao.png" alt="" class="icon-img">
-                  <p class="desc">火车票</p>
-                </div>
-                <div class="icon">
-                  <img src="https://s.qunarzz.com/homenode/images/touchheader/piao.png" alt="" class="icon-img">
-                  <p class="desc">火车票</p>
-                </div>
-                <div class="icon">
-                  <img src="https://s.qunarzz.com/homenode/images/touchheader/piao.png" alt="" class="icon-img">
-                  <p class="desc">火车票</p>
-                </div>
-          </swiper-slide>
-          <swiper-slide>
-                <div class="icon">
-                  <img src="https://s.qunarzz.com/homenode/images/touchheader/piao.png" alt="" class="icon-img">
-                  <p class="desc">火车票</p>
+          <swiper-slide v-for="(eachPage, index) in pages" :key=index>
+                <div class="icon" v-for="(item, index) in eachPage" :key="index">
+                  <img src=item.imgUrl class="icon-img">
+                  <p class="desc">{{item.desc}}</p>
                 </div>
           </swiper-slide>
         </swiper>
@@ -47,6 +15,9 @@
 <script>
 export default {
     name: 'HomeIcons',
+    props: {
+      list: Array
+    },
     data() {
       return {
         swiperOption: {
@@ -55,12 +26,25 @@ export default {
           pagination: {
               el: '.swiper-pagination'
           },
-          autoplay: true,
-          loop: true
-        },
-        swiperList: []
+        }
+      }
+    },
+    computed: {
+      pages() {
+        const pages = []
+        if(this.list.length){
+          for(let i = 0, length = this.list.length; i < length; i++){
+            let index = Math.floor(i / 8)
+            if(!pages[index]){
+              pages[index] = []
+            }
+            pages[index].push(this.list[i])
+          }
+        }
+        return pages
       }
     }
+    
 }
 </script>
 
