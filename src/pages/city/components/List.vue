@@ -12,74 +12,24 @@
         <div class="list-hot">
             <p class="title">热门城市</p>
             <ul class="button-list">
-                <li class="button-wrapper">
-                    <div class="button">北京</div>
-                </li>
-                <li class="button-wrapper">
-                    <div class="button">北京</div>
-                </li>
-                <li class="button-wrapper">
-                    <div class="button">北京</div>
-                </li>
-                <li class="button-wrapper">
-                    <div class="button">北京</div>
-                </li>
-                <li class="button-wrapper">
-                    <div class="button">北京</div>
-                </li>
-                <li class="button-wrapper">
-                    <div class="button">北京</div>
-                </li>
-                <li class="button-wrapper">
-                    <div class="button">北京</div>
-                </li>
-                <li class="button-wrapper">
-                    <div class="button">北京</div>
-                </li>
-                <li class="button-wrapper">
-                    <div class="button">北京</div>
-                </li>
-                <li class="button-wrapper">
-                    <div class="button">北京</div>
-                </li>
+                <template v-for="(item) in hotlist">
+                   <li class="button-wrapper" :key=item.id>
+                    <div class="button">{{item.name}}</div>
+                    </li>
+                </template>
+                
             </ul>
         </div>
-        <div class="list-all">
-            <p class="title">A</p>
+        <template v-for="(item, key) in alllist">
+            <div class="list-all" :key=key>
+            <p class="title">{{key}}</p>
                 <ul>
-                    <li class="list-all-item border-bottom">阿拉尔</li>
-                    <li class="list-all-item" border-bottom>阿拉尔</li>
-                    <li class="list-all-item" border-bottom>阿拉尔</li>
-                    <li class="list-all-item" border-bottom>阿拉尔</li>
-                    <li class="list-all-item" border-bottom>阿拉尔</li>
-                    <li class="list-all-item" border-bottom>阿拉尔</li>
-
+                    <li class="list-all-item" v-for="(eachCity) in item" :key=eachCity.id>{{eachCity.name}}</li>
                 </ul>
         </div>
-        <div class="list-all">
-            <p class="title">A</p>
-                <ul>
-                    <li class="list-all-item border-bottom">阿拉尔</li>
-                    <li class="list-all-item" border-bottom>阿拉尔</li>
-                    <li class="list-all-item" border-bottom>阿拉尔</li>
-                    <li class="list-all-item" border-bottom>阿拉尔</li>
-                    <li class="list-all-item" border-bottom>阿拉尔</li>
-                    <li class="list-all-item" border-bottom>阿拉尔</li>
-
-                </ul>
-        </div>
-        <div class="list-all">
-            <p class="title">A</p>
-                <ul>
-                    <li class="list-all-item border-bottom">阿拉尔</li>
-                    <li class="list-all-item" border-bottom>阿拉尔</li>
-                    <li class="list-all-item" border-bottom>阿拉尔</li>
-                    <li class="list-all-item" border-bottom>阿拉尔</li>
-                    <li class="list-all-item" border-bottom>阿拉尔</li>
-                    <li class="list-all-item" border-bottom>阿拉尔</li>
-
-                </ul>
-        </div>
+        </template>
+        
+        
     </div>
   </div>
 </template>
@@ -89,6 +39,10 @@ import BScroll from 'better-scroll'
 
 export default {
     name: 'CityList',
+    props: {
+        hotlist: Array,
+        alllist: Object
+    },
     mounted() {
       this.$nextTick(() => {
         this.scroll = new BScroll(this.$refs.wrapper, {})
