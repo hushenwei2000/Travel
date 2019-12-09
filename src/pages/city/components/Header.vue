@@ -1,7 +1,9 @@
 <template>
   <div class="header">
       <div class="header-top">
-          <div class="header-back">&lt;</div>
+          <router-link to="/">
+            <div class="header-back">&lt;</div>
+          </router-link>
           <div class="header-btn btn-active">国内</div>
           <div class="header-btn">国际/港澳台</div>
       </div>

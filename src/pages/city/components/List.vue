@@ -21,7 +21,7 @@
             </ul>
         </div>
         <template v-for="(item, key) in alllist">
-            <div class="list-all" :key=key>
+            <div class="list-all" :key=key :ref=key>
             <p class="title">{{key}}</p>
                 <ul>
                     <li class="list-all-item" v-for="(eachCity) in item" :key=eachCity.id>{{eachCity.name}}</li>
@@ -41,12 +41,21 @@ export default {
     name: 'CityList',
     props: {
         hotlist: Array,
-        alllist: Object
+        alllist: Object,
+        letter: String
     },
     mounted() {
       this.$nextTick(() => {
         this.scroll = new BScroll(this.$refs.wrapper, {})
       })
+    },
+    watch: {
+        letter() {
+            if(this.letter){
+                const ele = this.$refs[this.letter][0]
+                this.scroll.scrollToElement(ele)
+            }
+        }
     }
 }
 </script>

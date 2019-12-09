@@ -1,7 +1,15 @@
 <template>
   <div class="alphabet">
-      <ul class="list">
-          <li class="item" v-for="(item, key) in list" :key=key>{{key}}</li>
+      <ul class="list" ref="list" 
+            @touchstart="handleTouchStart"
+            @touchmove="handleTouchMove"
+            @touchend="handleTouchEnd">
+          <li class="item" 
+            v-for="(item, key) in letters" 
+            :key=key
+            @click="handleLetterClick"
+            
+            >{{item}}</li>
       </ul>
   </div>
 </template>
@@ -10,7 +18,54 @@
 export default {
     name: 'CityAlphabet',
     props: {
-        list: Object
+        list: Object,
+    },
+    data() {
+        return {
+            touchStatus: false,
+            startY: 0,
+            timer: null
+        }
+    },
+    updated() {
+        this.startY = this.$refs["list"].children[0].offsetTop
+    },
+    computed: {
+        letters() {
+            const letters = []
+            for(let key in this.list){
+                letters.push(key)
+            }
+            return letters
+        }
+    },
+    methods: {
+        handleLetterClick(e) {
+            this.$emit("change", e.target.innerHTML);
+        },
+        handleTouchStart(e){
+            if(e.touches[0].target.nodeName.toUpperCase() === "LI"){
+                this.touchStatus = true
+            }
+        },
+        handleTouchMove(e){
+            if(this.touchStatus){
+                // console.log(this.startY);
+                // console.log(e.touches[0].clientY - 85);
+                if(this.timer){
+                    clearTimeout(this.timer)
+                }
+                this.timer = setTimeout(() => {
+                    const index = Math.floor((e.touches[0].clientY - 85 - this.startY) / 18)
+                    if(index >= 0 && index < this.letters.length){
+                        this.$emit("change", this.letters[index])
+                    }
+                }, 16)
+            }
+        },
+        handleTouchEnd(){
+            this.touchStatus = false
+        }
     }
 }
 </script>
@@ -28,6 +83,6 @@ export default {
         justify-content center
         .item
             text-align center
-            line-height .32rem
+            line-height .36rem
             color $bgColor
 </style>
