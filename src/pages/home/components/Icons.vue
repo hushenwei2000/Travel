@@ -52,7 +52,7 @@ export default {
 @import '~styles/varibles.styl';
 @import '~styles/mixin.styl';
     .icons
-        margin-top .1rem
+        margin .1rem 0
         overflow hidden
         width 100%
         height 50vw

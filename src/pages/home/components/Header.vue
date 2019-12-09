@@ -4,10 +4,12 @@
       <div class="header-mid">
           <div class="header-mid-text">奶爸旅游季 游乐园走起</div>
       </div>
-      <div class="header-right">
-          {{city}}
-        <div class="header-right-arrow"></div>
+      <router-link to="/city">
+        <div class="header-right">
+            {{city}}
+            <div class="header-right-arrow"></div>
         </div>
+      </router-link>
   </div>
 </template>
 
@@ -21,7 +23,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-    @import '~styles/varibles.styl';
+@import '~styles/varibles.styl';
     .header
         display flex
         height 48px
@@ -50,6 +52,7 @@ export default {
             width: 1.324rem
             height 48px
             line-height 48px
+            color #fff
             .header-right-arrow
                 display inline-block
                 vertical-align middle

@@ -41,7 +41,6 @@ export default {
         },
         getHomeInfoSucc(res) {
             const data = res.data.data
-            console.log(data)
             this.city = data.city
             this.iconList = data.iconList
             this.recommendList = data.recommendList
