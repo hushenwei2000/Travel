@@ -3,7 +3,7 @@
       <p class="title">周末去哪儿</p>
       <ul>
           <li class="item" v-for="(item, index) in list" :key=index>
-              <img class="image" src=item.imgUrl>
+              <img class="image" :src=item.imgUrl>
             <div class="desc">
                 <p class="desc-title">
                     {{item.title}}

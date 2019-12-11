@@ -3,7 +3,7 @@
       <p class="title">热门推荐</p>
       <ul>
           <li class="item" v-for="(item, index) in list" :key=index>
-              <img class="image" src=item.imgUrl >
+              <img class="image" :src=item.imgUrl >
             <div class="desc">
                 <p class="desc-title">
                     {{item.title}}

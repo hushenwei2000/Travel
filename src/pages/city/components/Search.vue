@@ -5,7 +5,7 @@
       </div>
       <div class="content" v-show="keyWord" ref="wrapper">
           <ul>
-            <li v-for="(item, index) in result" :key=index>{{item}}</li>
+            <li v-for="(item, index) in result" :key=index @click="handleCityClick(item)">{{item}}</li>
             <li v-show="noResult">没有找到匹配数据</li>
           </ul>
       </div>
@@ -30,6 +30,15 @@ export default {
     computed: {
         noResult() {
             return !this.result.length
+        }
+    },
+    methods:{
+        handleCityClick(city) {
+            this.$store.commit('cityChange', city)
+            this.resetKeyword()
+        },
+        resetKeyword() {
+            this.keyWord = ''
         }
     },
     mounted() {
