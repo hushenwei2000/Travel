@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import store from './store/index.js'
+import store from './store'
 
 import fastClick from 'fastclick'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
