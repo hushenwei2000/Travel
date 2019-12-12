@@ -49,6 +49,7 @@ export default {
         overflow inherit
     .gallery
         position absolute
+        z-index 99
         display flex
         top 0
         bottom 0

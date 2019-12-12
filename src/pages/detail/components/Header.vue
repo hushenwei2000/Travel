@@ -1,5 +1,6 @@
 <template>
-  <div class="header">
+<div class="header">
+    <div class="header-abs" v-show="showAbs">
           <router-link 
           to="/" 
           tag="p"
@@ -8,20 +9,56 @@
           </router-link>
           <p class="like">更多</p>
           <p class="more">喜欢</p>
-      </div>
+    </div>
+    <div class="header-fixed" :style="fixedStyle" v-show="!showAbs">
+        景点详情
+    </div>
+</div>
 </template>
 
 <script>
 export default {
-    name: 'DetailHeader'
+    name: 'DetailHeader',
+    data() {
+        return {
+            showAbs: true,
+            fixedStyle: {
+                opacity: 0
+            }
+        }
+    },
+    methods: {
+        handleScroll() {
+            const top = document.documentElement.scrollTop
+            let opa = 0
+            if(top < 80){
+                this.showAbs = true
+            }else if(top > 100 && top < 160){
+                this.showAbs = false
+                opa = top / 160
+            }else if(top >= 160){
+                this.showAbs = false
+                opa = 1
+            }
+            this.absStyle = {
+                opacity: 1-opa
+            }
+            this.fixedStyle = {
+                opacity: opa
+            }
+        }
+    },
+    activated() {
+        window.addEventListener('scroll', this.handleScroll)
+    }
 }
 </script>
 
 <style lang="stylus" scoped>
-    .header
-        position relative
-        z-index 99
-        position absolute
+@import '~styles/varibles.styl';
+    .header-abs
+        position fixed
+        z-index 1
         top 0
         left 0
         right 0
@@ -30,11 +67,22 @@ export default {
             width .8rem
             height .8rem
             text-align center
-            background-color rgba(0, 0, 0, .3)
+            background-color rgba(0, 0, 0, .6)
             border-radius 50%
             color #fff
         .back
             float left
         .more, .like
             float right 
+    .header-fixed
+        position fixed
+        z-index 1
+        top 0
+        left 0
+        right 0
+        text-align center
+        background-color $bgColor
+        height 45px
+        line-height 45px
+        color white
 </style>
