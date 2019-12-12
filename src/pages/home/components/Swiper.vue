@@ -1,14 +1,12 @@
 <template>
-    <div class="swiper-wrapper">
-        <swiper :options="swiperOption">
-          <!-- slides -->
-          <swiper-slide v-for="(item, index) in list" :key=index>
-              <img class="swiper-img" 
-              :src=item.imgUrl />
-          </swiper-slide>
-          <!-- Optional controls -->
-          <div class="swiper-pagination"  slot="pagination"></div>
-        </swiper>
+  <div class="wrapper">
+    <swiper :options="swiperOption">
+      <swiper-slide v-for="(item, index) in list" :key=index>
+          <img class="swiper-img" 
+          :src=item.imgUrl />
+      </swiper-slide>
+      <div class="swiper-pagination"  slot="pagination"></div>
+    </swiper>
   </div>
 </template>
 
@@ -38,7 +36,7 @@ export default {
 <style lang="stylus" scoped>
     .swiper-wrapper >>> .swiper-pagination-bullet-active
         background-color #fff
-    .swiper-wrapper
+    .wrapper
         width 100%
         height 30vw
         background-color lightgrey

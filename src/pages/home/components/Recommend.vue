@@ -3,7 +3,9 @@
       <p class="title">热门推荐</p>
       <ul>
           <li class="item" v-for="(item, index) in list" :key=index>
-              <img class="image" :src=item.imgUrl >
+              <router-link :to="/detail/+item.id">
+                <img class="image" :src=item.imgUrl >
+              </router-link>
             <div class="desc">
                 <p class="desc-title">
                     {{item.title}}
