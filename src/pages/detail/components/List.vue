@@ -6,16 +6,18 @@
             <p class="buy"><span>￥78</span>起</p>
             <div v-if="item.children" class="open" @click="handleOpenClick(index)">&lt;</div>
         </div>
-        <div v-if="item.children" class="item-child" v-show="showChildren(index)">
-            <detail-list  :list="item.children"></detail-list>
-        </div>
+        <slide> 
+            <div v-if="item.children" class="item-child" v-show="showChildren(index)">
+                <detail-list  :list="item.children"></detail-list>
+            </div>
+        </slide>
     </div>
   </div>
 </template>
 
 <script>
 import DetailList from './List'
-
+import Slide from '../../../common/slide/Slide'
 export default {
     name: 'DetailList',
     data() {
@@ -24,7 +26,8 @@ export default {
         }
     },
     components: {
-        DetailList
+        DetailList,
+        Slide
     },
     props: {
         list: Array
@@ -93,4 +96,6 @@ export default {
                 transform rotate(-90deg)
         .item-child
             background-color $greyBg
+            overflow hidden
+    
 </style>

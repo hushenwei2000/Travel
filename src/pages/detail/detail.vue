@@ -1,12 +1,16 @@
 <template>
   <div class="detail">
       <detail-header></detail-header>
-      <detail-banner :sightName="sightName" :bannerImg="bannerImg"></detail-banner>
+      <detail-banner 
+        :sightName="sightName" 
+        :bannerImg="bannerImg" 
+        :galleryList="galleryList">
+    </detail-banner>
       <detail-ticket
           :ticketList="ticketList"
           :serviceList="serviceList"
-          :tripList="tripList"
-      ></detail-ticket>
+          :tripList="tripList">
+        </detail-ticket>
       <div class="content"></div>
   </div>
 </template>
@@ -29,7 +33,8 @@ export default {
             bannerImg: '',
             ticketList: [],
             serviceList: [],
-            tripList: []
+            tripList: [],
+            galleryList: ["https://img1.qunarzz.com/p/tts3/1806/5d/5096a14841cda02.jpg_r_640x420x90_e5f4d61f.jpg","https://img1.qunarzz.com/p/tts3/1806/5d/5096a14841cda02.jpg_r_640x420x90_e5f4d61f.jpg","https://img1.qunarzz.com/p/tts3/1806/5d/5096a14841cda02.jpg_r_640x420x90_e5f4d61f.jpg"]
         }
     },
     methods:{

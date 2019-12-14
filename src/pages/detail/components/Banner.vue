@@ -9,7 +9,10 @@
                 <p class="info-right">1/7</p>
             </div>
         </div>
-        <gallery @galleryClick="handleGalleryClick" v-show="showGallery"></gallery>
+        <gallery 
+        @galleryClick="handleGalleryClick" 
+        v-show="showGallery"
+        :list="galleryList"></gallery>
     </div>
 </template>
 
@@ -23,7 +26,8 @@ export default {
     },
     props:{
         bannerImg: String,
-        sightName: String
+        sightName: String,
+        galleryList: Array
     },
     data() {
         return {
