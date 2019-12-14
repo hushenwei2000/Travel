@@ -42,7 +42,7 @@ export default {
     },
     mounted() {
       this.$nextTick(() => {
-        this.scroll = new BScroll(this.$refs.wrapper, {})
+        this.scroll = new BScroll(this.$refs.wrapper, {click: true, tap: true})
       })
     },
     watch: {

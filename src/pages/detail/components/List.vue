@@ -79,12 +79,16 @@ export default {
             .buy
                 position absolute
                 right .46rem
+                height 1rem
+                line-height 1rem
                 span 
                     color #ff9800
                     font-size .4rem
             .open
                 position absolute
                 right .1rem
+                height 1rem
+                line-height 1rem
                 text-align center
                 transform rotate(-90deg)
         .item-child

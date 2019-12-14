@@ -13,8 +13,8 @@
             <p class="title">热门城市</p>
             <ul class="button-list">
                 <template v-for="(item) in hotlist">
-                   <li class="button-wrapper" :key=item.id @click="handleCityClick(item.name)">
-                    <div class="button">{{item.name}}</div>
+                   <li class="button-wrapper" :key=item.id>
+                    <div class="button" @click="handleCityClick(item.name)">{{item.name}}</div>
                     </li>
                 </template>
                 
@@ -68,7 +68,7 @@ export default {
     },
     mounted() {
       this.$nextTick(() => {
-        this.scroll = new BScroll(this.$refs.wrapper, {})
+        this.scroll = new BScroll(this.$refs.wrapper, {click: true, tap: true})
       })
     }
 }
