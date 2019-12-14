@@ -5,7 +5,7 @@
           to="/" 
           tag="p"
             class="back">
-           返回
+           &lt;
           </router-link>
           <p class="like">更多</p>
           <p class="more">喜欢</p>
@@ -31,17 +31,17 @@ export default {
         handleScroll() {
             const top = document.documentElement.scrollTop
             let opa = 0
-            if(top < 80){
+            if(top > 0){
+                this.showAbs = false
+                if(top < 140){
+                    this.showAbs = false
+                    opa = top / 140
+                }else if(top >= 140){
+                    this.showAbs = false
+                    opa = 1
+                }
+            }else{
                 this.showAbs = true
-            }else if(top > 100 && top < 160){
-                this.showAbs = false
-                opa = top / 160
-            }else if(top >= 160){
-                this.showAbs = false
-                opa = 1
-            }
-            this.absStyle = {
-                opacity: 1-opa
             }
             this.fixedStyle = {
                 opacity: opa

@@ -2,10 +2,10 @@
     <div>
         <div class="banner">
             <div class="img-wrapper" @click="handleBannerClick">
-                <img src="https://img1.qunarzz.com/p/tts3/1806/5d/5096a14841cda02.jpg_r_640x420x90_e5f4d61f.jpg" />
+                <img :src=bannerImg />
             </div>
             <div class="info">
-                <p class="info-left">产品编号 2848621660</p>
+                <p class="info-left">{{sightName}}</p>
                 <p class="info-right">1/7</p>
             </div>
         </div>
@@ -20,6 +20,10 @@ export default {
     name: 'DetailBanner',
     components: {
         Gallery
+    },
+    props:{
+        bannerImg: String,
+        sightName: String
     },
     data() {
         return {
@@ -42,7 +46,7 @@ export default {
         position relative
         .img-wrapper
             width 100%
-            height 66vw
+            height 56vw
             img
                 width 100%
         .info
