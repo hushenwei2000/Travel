@@ -1,21 +1,8 @@
-# travel
-
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
+如果要使用模拟数据，请将config/index.js，14行：键'./api'的值改为
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+{
+    target: 'http://localhost:8080',
+    pathRewrite: {
+        '^/api': '/static/mock'
+    }
+```
