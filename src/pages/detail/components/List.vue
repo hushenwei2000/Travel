@@ -37,10 +37,12 @@ export default {
             for(let i = 0, length = this.showIndex.length; i < length; i++){
                 if(this.showIndex[i] == index){
                     this.showIndex.splice(i, 1)
+                    this.$emit("changeShowChildren")
                     return
                 }
             }
             this.showIndex.push(index)
+            this.$emit("changeShowChildren")
         },
         showChildren(index) {
             for(let i = 0, length = this.showIndex.length; i < length; i++){
@@ -67,10 +69,10 @@ export default {
             align-items center
             h5
                 height 1rem
-                overflow: hidden;
-                text-overflow: ellipsis;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
+                overflow hidden
+                text-overflow ellipsis
+                -webkit-line-clamp 2
+                -webkit-box-orient vertical
                 margin-right 1.8rem
                 color #333
                 font-size .3rem

@@ -2,17 +2,19 @@
   <div class="ticket">
       <div class="copyNav nav" v-show="showCopyNav"></div>
       <div class="nav" :style="fixedStyle">
-        <span class="active">门票</span><span>一日游</span><span>景区服务</span>
+        <span :class="{'active': showContent == 'ticket'}">门票</span>
+        <span :class="{'active': showContent == 'trip'}">一日游</span>
+        <span :class="{'active': showContent == 'service'}">景区服务</span>
       </div>
       <div class="margin"></div>
-      <div class="title"><i></i>门票</div>
-      <detail-list :list="ticketList"></detail-list>
-      <div class="margin"></div>
+      <div class="title" ref="ticket"><i></i>门票</div>
+      <detail-list :list="ticketList" @changeShowChildren="updateHeight"></detail-list>
+      <div class="margin" ref="trip"></div>
       <div class="title"><i></i>一日游</div>
-      <detail-list :list="tripList"></detail-list>
-      <div class="margin"></div>
+      <detail-list :list="tripList" @changeShowChildren="updateHeight"></detail-list>
+      <div class="margin" ref="service"></div>
       <div class="title"><i></i>景区服务</div>
-      <detail-list :list="serviceList"></detail-list>
+      <detail-list :list="serviceList" @changeShowChildren="updateHeight"></detail-list>
   </div>
 </template>
 
@@ -32,7 +34,11 @@ export default {
     data() {
         return{
           isFixed: false,
-          fixedStyle: {}
+          fixedStyle: {},
+          ticketHeight: 0,
+          tripHeight: 0,
+          serviceHeight: 0,
+          showContent: ''
         }
     },
     computed:{
@@ -42,7 +48,8 @@ export default {
     },
     methods: {
         handleScroll() {
-            const top = document.documentElement.scrollTop
+            const top= window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+            console.log("滑动到" + top)
             if(top >= 180){
               this.fixedStyle = {
                 position: 'fixed',
@@ -54,10 +61,27 @@ export default {
             }else{
               this.fixedStyle = {}
             }
+            if(top < this.tripHeight){
+              this.showContent = 'ticket'
+            }else if(top < this.serviceHeight){
+              this.showContent = 'trip'
+            }else{
+              this.showContent = 'service'
+            }
+        },
+        updateHeight() {
+          setTimeout(() => {
+            this.ticketHeight = this.$refs.ticket.offsetTop - 87.5
+            this.tripHeight = this.$refs.trip.offsetTop - 87.5
+            this.serviceHeight = this.$refs.service.offsetTop - 87.5
+            console.log("高度分别是"+this.ticketHeight+","+this.tripHeight+","+this.serviceHeight);
+          }, 500)
+          
         }
     },
     activated() {
         window.addEventListener('scroll', this.handleScroll)
+        this.updateHeight()
     },
     deactivated() {
         window.removeEventListener('scroll', this.handleScroll)

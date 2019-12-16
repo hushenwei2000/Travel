@@ -29,7 +29,7 @@ export default {
     },
     methods: {
         handleScroll() {
-            const top = document.documentElement.scrollTop
+            const top= window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
             let opa = 0
             if(top > 0){
                 this.showAbs = false
@@ -49,10 +49,10 @@ export default {
         }
     },
     activated() {
-        window.addEventListener('scroll', this.handleScroll)
+        window.addEventListener('scroll', this.handleScroll, false)
     },
     deactivated() {
-        window.removeEventListener('scroll', this.handleScroll)
+        window.removeEventListener('scroll', this.handleScroll, false)
     }
 }
 </script>
